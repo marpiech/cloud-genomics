@@ -13,10 +13,16 @@
     shell: df -h | grep "/$" | tr -s ' ' | cut -d ' ' -f 4
     register: disk_size
   - name: Test disk read
-    shell: sysbench fileio run --file-test-mode=seqrd | grep 'read, MiB/s' | grep -oP "[0-9].*"
+    shell: |
+      sysbench fileio prepare --file-total-size=16M --file-num=10 > /dev/null
+      sysbench fileio run --file-total-size=16M --file-num=10 --file-test-mode=seqrd | grep 'read, MiB/s' | grep -oP "[0-9].*"
+      sysbench fileio cleanup > /dev/null
     register: read_benchmark
   - name: Test disk write
-    shell: sysbench fileio run --file-test-mode=seqwr | grep 'written, MiB/s' | grep -oP "[0-9].*"
+    shell: |
+      sysbench fileio prepare --file-total-size=16M --file-num=10 > /dev/null
+      sysbench fileio run --file-total-size=16M --file-num=10 --file-test-mode=seqwr | grep 'written, MiB/s' | grep -oP "[0-9].*"
+      sysbench fileio cleanup > /dev/null
     register: write_benchmark
   - debug: 
       msg:
@@ -28,3 +34,9 @@
       - "DISK_SIZE:    {{ disk_size.stdout }}"
       - "DISK_READ:    {{ read_benchmark.stdout }} MB/s"
       - "DISK_WRITE:   {{ write_benchmark.stdout }} MB/s"
+  - name: append
+    lineinfile:
+      dest: /tmp/foo
+      insertafter: EOF
+      line: "{{ ansible_facts.hostname }}\t{{ singlecpu_benchmark.stdout }}\t{{ multicpu_benchmark.stdout }}"
+    delegate_to: localhost
