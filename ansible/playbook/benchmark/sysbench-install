@@ -1,0 +1,5 @@
+- hosts: all
+  become: yes
+  tasks:
+  - name: Install sysbench
+    apt: pkg=sysbench state=present

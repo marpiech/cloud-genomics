@@ -1,0 +1,30 @@
+- hosts: all
+  tasks:
+  - name: Test CPU single thread
+    shell: sysbench cpu run --threads=1 | grep -oP "events per second.*" | grep -oP "[0-9].*"
+    register: singlecpu_benchmark
+  - name: Test CPU multi thread
+    shell: sysbench cpu run --threads=32 | grep -oP "events per second.*" | grep -oP "[0-9].*"
+    register: multicpu_benchmark
+  - name: Test memory
+    shell: sysbench memory run | grep "per second" | grep -oP "[0-9]+\.[0-9]+"
+    register: memory_benchmark
+  - name: Disk size
+    shell: df -h | grep "/$" | tr -s ' ' | cut -d ' ' -f 4
+    register: disk_size
+  - name: Test disk read
+    shell: sysbench fileio run --file-test-mode=seqrd | grep 'read, MiB/s' | grep -oP "[0-9].*"
+    register: read_benchmark
+  - name: Test disk write
+    shell: sysbench fileio run --file-test-mode=seqwr | grep 'written, MiB/s' | grep -oP "[0-9].*"
+    register: write_benchmark
+  - debug: 
+      msg:
+      - "1CPU_SPEED:   {{ singlecpu_benchmark.stdout }} events/s"
+      - "32CPU_SPEED:  {{ multicpu_benchmark.stdout }} events/s"
+      - "VCPU_COUNT:   {{ ansible_facts.processor_vcpus }} vcpu"
+      - "MEMORY_SPEED: {{ memory_benchmark.stdout }} events/s"
+      - "MEMORY_SIZE:  {{ ansible_facts.memtotal_mb }} MB"
+      - "DISK_SIZE:    {{ disk_size.stdout }}"
+      - "DISK_READ:    {{ read_benchmark.stdout }} MB/s"
+      - "DISK_WRITE:   {{ write_benchmark.stdout }} MB/s"
