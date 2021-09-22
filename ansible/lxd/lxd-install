@@ -1,0 +1,13 @@
+- hosts: lxd
+  become: yes
+  tasks:
+  - name: Install lxs
+    apt:
+      state: present
+      update_cache: true
+      pkg:
+      - lxd
+  - name: Add user
+    shell: usermod -a -G {{ ansible_env.SUDO_USER }} lxd
+  - name: Init lxd
+    shell: 'printf "no\nyes\nlxdstorage\ndir\nno\nyes\n\n10.105.28.1/24\nyes\nnone\nno\nyes\nno\n" | lxd init'

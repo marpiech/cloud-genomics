@@ -6,4 +6,4 @@
       state: present
       update_cache: true
       pkg:
-      - bsdmainutils
+      - bsdmainutils #column
