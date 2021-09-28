@@ -1,0 +1,9 @@
+- hosts: "{{ ansible_limit | default(omit) }}"
+  become: yes
+  tasks:
+  - name: Install docker
+    apt:
+      state: present
+      update_cache: true
+      pkg:
+      - docker.io
