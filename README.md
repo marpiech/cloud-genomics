@@ -1,1 +1,2 @@
-# cfg
+# cfg 
+kubernetes scripts for genomics
