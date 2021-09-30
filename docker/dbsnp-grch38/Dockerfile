@@ -1,14 +1,10 @@
 ARG REPOSITORY=marpiech
-ARG IMAGE_NAME=dbsnp
+ARG IMAGE_NAME=dbsnp-grch38
 ARG VERSION=155
-ARG TIMESTAMP=22.09.2021
+ARG TIMESTAMP=30.09.2021
 
-FROM ubuntu:20.04 as worker
+FROM marpiech/ubuntu:20.04 as worker
 ARG VERSION
-RUN apt-get update && apt-get install -y \
-  wget \
-  bcftools \
-  tabix
 
 RUN wget "https://ftp.ncbi.nih.gov/snp/archive/b$VERSION/VCF/GCF_000001405.39.gz"
 RUN wget "https://ftp.ncbi.nih.gov/snp/archive/b$VERSION/VCF/GCF_000001405.39.gz.tbi"
@@ -24,5 +20,5 @@ RUN bcftools annotate \
   -o GRCh38.dbSNP"$VERSION".vcf.gz \
   GCF_000001405.39.gz
 
-#tabix -p vcf GRCh38.dbSNP$DBSNP_VERSION.vcf.gz
-#bcftools norm -c x -f genome/GRCh38.no_alt_analysis_set.fa.gz GRCh38.dbSNP155 chr.vcf.gz GRCh38.dbSNP155.chr.norm.vcf.gz -O z
+RUN tabix -p vcf GRCh38.dbSNP"$VERSION".vcf.gz
+RUN bcftools norm -c x -f genome/GRCh38.no_alt_analysis_set.fa.gz GRCh38.dbSNP"$VERSION".vcf.gz GRCh38.dbSNP$VERSION.norm.vcf.gz -O z

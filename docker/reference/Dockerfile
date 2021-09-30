@@ -1,8 +1,9 @@
-FROM ubuntu:20.04 as worker
-RUN apt update && \
-    apt install -y \
-      wget \
-      gzip
+ARG REPOSITORY=marpiech
+ARG IMAGE_NAME=reference
+ARG VERSION=grch38-no-alt
+ARG TIMESTAMP=30.09.2021
+
+FROM marpiech/ubuntu:20.04 as worker
 
 RUN wget -c ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/001/405/GCA_000001405.15_GRCh38/seqs_for_alignment_pipelines.ucsc_ids/GCA_000001405.15_GRCh38_no_alt_analysis_set.fna.gz
 RUN wget -c ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/001/405/GCA_000001405.15_GRCh38/seqs_for_alignment_pipelines.ucsc_ids/GCA_000001405.15_GRCh38_no_alt_analysis_set.fna.fai
