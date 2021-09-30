@@ -1,4 +1,4 @@
-- hosts: all
+- hosts: "{{ ansible_limit | default(omit) }}"
   become: yes
   tasks:
   - name: Install utils
@@ -6,4 +6,7 @@
       state: present
       update_cache: true
       pkg:
-      - bsdmainutils #column
+      - bsdmainutils # column program
+      - apt-transport-https # apt keys
+      - ca-certificates # apt keys
+      - curl

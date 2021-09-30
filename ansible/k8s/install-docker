@@ -3,7 +3,7 @@
   tasks:
   - name: Install docker
     apt:
-      state: present
-      update_cache: true
+      #state: present
+      #update_cache: true
       pkg:
       - docker.io

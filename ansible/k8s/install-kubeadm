@@ -1,0 +1,20 @@
+- hosts: "{{ ansible_limit | default(omit) }}"
+  become: yes
+  tasks:
+  - name: Add gpg key
+    ansible.builtin.apt_key:
+      url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
+      state: present
+  - name: Add kubernetes repository into sources
+    ansible.builtin.apt_repository:
+      repo: deb http://apt.kubernetes.io/ kubernetes-xenial main
+      state: present
+      filename: kubernetes
+  - name: Install kubeadm
+    apt:
+      state: present
+      update_cache: true
+      pkg:
+      - kubelet
+      - kubeadm
+      - kubectl
