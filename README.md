@@ -1,2 +1,2 @@
-# cfg 
-kubernetes scripts for genomics
+# scalabale genomics 
+Scalable genomics resources
