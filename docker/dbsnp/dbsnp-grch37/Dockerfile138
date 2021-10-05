@@ -1,0 +1,15 @@
+ARG REPOSITORY=marpiech
+ARG IMAGE_NAME=dbsnp-grch37
+ARG VERSION=138
+ARG TIMESTAMP=5.10.2021
+
+FROM marpiech/reference:grch37-broad AS reference
+
+FROM marpiech/ubuntu:20.04 as worker
+RUN wget https://storage.googleapis.com/gcp-public-data--broad-references/hg19/v0/Homo_sapiens_assembly19.dbsnp.vcf
+RUN cat Homo_sapiens_assembly19.dbsnp.vcf | bgzip -c > dbsnp138.37.vcf.gz
+RUN rm Homo_sapiens_assembly19.dbsnp.vcf
+RUN tabix -p vcf dbsnp138.37.vcf.gz
+
+COPY --from=reference grch37.broad.fa* ./
+RUN bcftools norm -c x -f grch37.broad.fa dbsnp138.37.vcf.gz dbsnp138.37.norm.vcf.gz -O z

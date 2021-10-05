@@ -14,6 +14,8 @@ RUN cat GCF_000001405.25_GRCh37.p13_assembly_report.txt | \
   grep -e '^[^#]' | \
   awk '{ print $7, $11 }' > GCF_000001405.25_GRCh37.p13_assembly_report.chrnames
 
+RUN wget "https://ftp.ncbi.nih.gov/snp/archive/b$VERSION/VCF/GCF_000001405.25.gz.tbi"
+
 RUN bcftools annotate \
   --rename-chrs GCF_000001405.25_GRCh37.p13_assembly_report.chrnames \
   --threads 10 -Oz \

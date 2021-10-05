@@ -1,0 +1,13 @@
+ARG REPOSITORY=marpiech
+ARG IMAGE_NAME=dbsnp-grch38
+ARG VERSION=138
+ARG TIMESTAMP=4.010.2021
+
+FROM marpiech/reference:grch38-broad AS reference
+
+FROM marpiech/ubuntu:20.04 as worker
+RUN wget https://storage.googleapis.com/gcp-public-data--broad-references/hg38/v0/Homo_sapiens_assembly38.dbsnp138.vcf.gz -O dbsnp138.38.vcf.gz
+RUN wget https://storage.googleapis.com/gcp-public-data--broad-references/hg38/v0/Homo_sapiens_assembly38.dbsnp138.vcf.gz.tbi -O dbsnp138.38.vcf.gz.tbi
+
+COPY --from=reference grch38.broad.fa* .
+RUN bcftools norm -c x -f genome/grch38.broad.fa dbsnp138.38.vcf.gz dbsnp138.38.norm.vcf.gz -O z
