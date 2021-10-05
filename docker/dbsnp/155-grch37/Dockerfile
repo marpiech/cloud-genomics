@@ -1,7 +1,9 @@
 ARG REPOSITORY=marpiech
 ARG IMAGE_NAME=dbsnp-grch37
 ARG VERSION=155
-ARG TIMESTAMP=30.09.2021
+ARG TIMESTAMP=5.10.2021
+
+FROM marpiech/reference:grch37-broad AS reference
 
 FROM marpiech/ubuntu:20.04 as worker
 ARG VERSION
@@ -22,5 +24,12 @@ RUN bcftools annotate \
   -o GRCh37.dbSNP"$VERSION".vcf.gz \
   GCF_000001405.25.gz
 
-RUN tabix -p vcf GRCh37.dbSNP"$VERSION".vcf.gz
-RUN bcftools norm -c x -f genome/GRCh37.no_alt_analysis_set.fa.gz GRCh37.dbSNP"$VERSION".vcf.gz GRCh37.dbSNP$VERSION.norm.vcf.gz -O z
+RUN zcat GRCh37.dbSNP"$VERSION".vcf.gz | grep -P '^#|^chr' | grep -v '^chrUn' | grep -v '_random' | bgzip -c  > dbsnp"$VERSION".grch37.vcf.gz
+RUN tabix -p vcf dbsnp"$VERSION".grch37.vcf.gz
+
+COPY --from=reference grch37.broad.fa grch37.broad.fa
+COPY --from=reference grch37.broad.fa.fai grch37.broad.fa.fai
+COPY --from=reference grch37.broad.dict grch37.broad.dict
+
+RUN bcftools norm -c x -f grch37.broad.fa dbsnp"$VERSION".grch37.vcf.gz -O z dbsnp"$VERSION".grch37.norm.vcf.gz
+RUN tabix -p vcf dbsnp"$VERSION".grch37.norm.vcf.gz

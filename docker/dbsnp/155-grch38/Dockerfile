@@ -1,12 +1,12 @@
 ARG REPOSITORY=marpiech
-ARG IMAGE_NAME=dbsnp-grch38
-ARG VERSION=155
-ARG TIMESTAMP=1.10.2021
+ARG IMAGE_NAME=dbsnp
+ARG VERSION=155-grch38
+ARG TIMESTAMP=5.10.2021
 
 FROM marpiech/reference:grch38-no-alt AS reference
 
 FROM marpiech/ubuntu:20.04 AS worker
-ARG VERSION
+ARG VERSION=155
 
 RUN wget "https://ftp.ncbi.nih.gov/snp/archive/b$VERSION/VCF/GCF_000001405.39.gz"
 RUN wget "https://ftp.ncbi.nih.gov/snp/archive/b$VERSION/VCF/GCF_000001405.39.gz.tbi"
