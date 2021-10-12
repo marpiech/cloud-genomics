@@ -1,0 +1,9 @@
+[Unit]
+Description=Cromwell systemd service.
+
+[Service]
+Type=simple
+ExecStart=/bin/bash -c "/usr/bin/cromwell server"
+
+[Install]
+WantedBy=multi-user.target
