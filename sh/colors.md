@@ -4,7 +4,7 @@
 ![#ff0000](https://via.placeholder.com/15/ff0000/000000?text=+) **196** red  
 ![#d7005f](https://via.placeholder.com/15/d7005f/000000?text=+) **161** amaranth  
 ![#af87ff](https://via.placeholder.com/15/af87ff/000000?text=+) **141** purple  
-![#8700ff](https://via.placeholder.com/15/8700ff/000000?text=+) **093** violet
+![#8700ff](https://via.placeholder.com/15/8700ff/000000?text=+) **093** violet  
 ![#5fafff](https://via.placeholder.com/15/5fafff/000000?text=+) **075** blue  
 ![#5fd700](https://via.placeholder.com/15/5fd700/000000?text=+) **076** lime  
 ![#00d7af](https://via.placeholder.com/15/00d7af/000000?text=+) **043** cyan  
