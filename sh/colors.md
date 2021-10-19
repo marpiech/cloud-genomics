@@ -3,8 +3,8 @@
 ![#ffaf00](https://via.placeholder.com/15/ffaf00/000000?text=+) **161** orange  
 ![#d7005f](https://via.placeholder.com/15/d7005f/000000?text=+) **161** amaranth  
 ![#af87ff](https://via.placeholder.com/15/af87ff/000000?text=+) **141** purple  
-![#5fafff](https://via.placeholder.com/15/5fafff/000000?text=+) **161** blue  
-![#d7005f](https://via.placeholder.com/15/d7005f/000000?text=+) **161** amaranth  
+![#5fafff](https://via.placeholder.com/15/5fafff/000000?text=+) **075** blue  
+![#5fd700](https://via.placeholder.com/15/5fd700/000000?text=+) **076** lime  
 ![#d7005f](https://via.placeholder.com/15/d7005f/000000?text=+) **161** amaranth  
 ![#d7005f](https://via.placeholder.com/15/d7005f/000000?text=+) **161** amaranth  
 ![#d7005f](https://via.placeholder.com/15/d7005f/000000?text=+) **161** amaranth  
