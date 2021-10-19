@@ -1,4 +1,4 @@
-# colors
+# xterm color palette
 ![#ffff5f](https://via.placeholder.com/15/ffff5f/000000?text=+) **227** yellow  
 ![#ffaf00](https://via.placeholder.com/15/ffaf00/000000?text=+) **161** orange  
 ![#d78700](https://via.placeholder.com/15/d78700/000000?text=+) **172** brown  
