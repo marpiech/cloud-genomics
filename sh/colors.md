@@ -3,6 +3,7 @@
 ![#ffaf00](https://via.placeholder.com/15/ffaf00/000000?text=+) **161** orange  
 ![#ff0000](https://via.placeholder.com/15/ff0000/000000?text=+) **196** red  
 ![#d7005f](https://via.placeholder.com/15/d7005f/000000?text=+) **161** amaranth  
+![#ff00d7](https://via.placeholder.com/15/ff00d7/000000?text=+) **200** magenta  
 ![#af87ff](https://via.placeholder.com/15/af87ff/000000?text=+) **141** purple  
 ![#8700ff](https://via.placeholder.com/15/8700ff/000000?text=+) **093** violet  
 ![#5fafff](https://via.placeholder.com/15/5fafff/000000?text=+) **075** blue  
@@ -11,7 +12,7 @@
 
   
 
-![#d7005f](https://via.placeholder.com/15/d7005f/000000?text=+) **161** amaranth  
+
 ![#afff5f](https://via.placeholder.com/15/afff5f/000000?text=+) **143** lime  
 ![#ffaf00](https://via.placeholder.com/15/ffaf00/000000?text=+) **214** orange  
 ![#0087ff](https://via.placeholder.com/15/0087ff/000000?text=+) **033** blue  
