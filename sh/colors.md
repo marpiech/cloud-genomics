@@ -1,12 +1,13 @@
 # colors
 ![#ffff5f](https://via.placeholder.com/15/ffff5f/000000?text=+) **227** yellow  
 ![#ffaf00](https://via.placeholder.com/15/ffaf00/000000?text=+) **161** orange  
+![#d70000](https://via.placeholder.com/15/d70000/000000?text=+) **160** red  
 ![#d7005f](https://via.placeholder.com/15/d7005f/000000?text=+) **161** amaranth  
 ![#af87ff](https://via.placeholder.com/15/af87ff/000000?text=+) **141** purple  
 ![#5fafff](https://via.placeholder.com/15/5fafff/000000?text=+) **075** blue  
 ![#5fd700](https://via.placeholder.com/15/5fd700/000000?text=+) **076** lime  
 ![#00d7af](https://via.placeholder.com/15/00d7af/000000?text=+) **043** cyan  
-![#d7005f](https://via.placeholder.com/15/d7005f/000000?text=+) **161** amaranth  
+
 ![#d7005f](https://via.placeholder.com/15/d7005f/000000?text=+) **161** amaranth  
 
 ![#d7005f](https://via.placeholder.com/15/d7005f/000000?text=+) **161** amaranth  
