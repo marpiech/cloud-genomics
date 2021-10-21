@@ -1,4 +1,6 @@
 ---
-- hosts: staging
+- hosts: brown
   roles:
-    - zsh
+    - role: zsh
+      vars:
+        color_profile: brown
