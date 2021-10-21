@@ -1,0 +1,4 @@
+- include: install.yml
+  become: true
+  tags:
+    - zsh_install

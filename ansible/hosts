@@ -1,4 +1,9 @@
-ion
+yellow
+lime
+brown
 
-[prometheus]
-ion
+[master]
+yellow
+
+[staging]
+brown
