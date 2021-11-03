@@ -1,9 +1,20 @@
+[localhost]
+localhost
+
+[server]
 yellow
 lime
 brown
 
 [master]
 yellow
+
+[k8s-master]
+yellow
+
+[k8s-worker]
+lime
+brown
 
 [staging]
 brown

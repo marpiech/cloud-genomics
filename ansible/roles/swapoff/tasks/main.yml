@@ -1,0 +1,24 @@
+- name: Disable SWAP since kubernetes can't work with swap enabled (1/2)
+  become: yes
+  shell: |
+    swapoff -a
+#  when: kubernetes_installed is changed
+
+- name: Disable SWAP in fstab since kubernetes can't work with swap enabled (2/2)
+  become: yes
+  replace:
+    path: /etc/fstab
+    regexp: '^([^#].*?\sswap\s+sw\s+.*)$'
+    replace: '# \1'
+#  when: kubernetes_installed is changed
+
+#reenable
+#- name: Reenable SWAP in fstab (1/2)
+#  replace:
+#    path: /etc/fstab
+#    regexp: '^# (.+?\sswap\s+sw\s+.*)$'
+#    replace: '\1'
+#
+#- name: Enable SWAP (2/2)
+#  shell: |
+#    swapon -a

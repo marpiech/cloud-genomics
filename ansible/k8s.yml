@@ -1,0 +1,20 @@
+---
+- hosts: k8s-master
+  become: true
+  vars:
+    kubernetes_version: '1.22'
+    kubernetes_role: "master"
+    kubernetes_allow_pods_on_master: true
+    kubernetes_pod_network:
+      # Flannel CNI.
+      cni: 'flannel'
+      cidr: '192.168.0.0/16'
+  roles:
+    - kubeadm
+- hosts: k8s-worker
+  become: true
+  vars:
+    kubernetes_version: '1.22'
+    kubernetes_role: "node"
+  roles:
+    - kubeadm

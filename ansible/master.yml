@@ -1,0 +1,18 @@
+---
+- name: Openvpn server
+  hosts: master
+  gather_facts: yes
+  become: yes
+  roles:
+    - role: robertdebock.bootstrap
+    - role: robertdebock.buildtools
+    - role: robertdebock.epel
+    - role: robertdebock.python_pip
+- name: create openvpn server
+  hosts: master
+  gather_facts: yes
+  become: yes
+  roles:
+    - role: robertdebock.openvpn
+      vars:
+        openvpn_role: "server"

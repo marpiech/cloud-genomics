@@ -1,0 +1,16 @@
+---
+- hosts: brown
+  roles:
+    - role: zsh
+      vars:
+        color_profile: brown
+- hosts: yellow
+  roles:
+    - role: zsh
+      vars:
+        color_profile: yellow
+- hosts: lime
+  roles:
+    - role: zsh
+      vars:
+        color_profile: lime

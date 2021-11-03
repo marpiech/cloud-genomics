@@ -1,0 +1,19 @@
+---
+kind: Ingress
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: myingress
+  annotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: web
+spec:
+  rules:
+    - host: yellow
+      http:
+        paths:
+          - path: /traefik
+            pathType: Prefix
+            backend:
+              service:
+                name: whoami
+                port:
+                  number: 80

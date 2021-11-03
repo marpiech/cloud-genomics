@@ -1,6 +1,0 @@
----
-- hosts: brown
-  roles:
-    - role: zsh
-      vars:
-        color_profile: brown
