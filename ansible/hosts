@@ -1,6 +1,9 @@
 [localhost]
 localhost
 
+[gate]
+gate
+
 [server]
 yellow
 lime

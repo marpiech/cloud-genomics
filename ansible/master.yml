@@ -1,18 +1,10 @@
 ---
-- name: Openvpn server
-  hosts: master
-  gather_facts: yes
-  become: yes
+- hosts: master
+  vars: 
+    certbot_generate_certificates: true
+    certbot_register_email: piechota.marcin@gmail.com
+    certbot_certificate_domains:
+      - traefik.labpgx.com
+      - apache.labpgx.com
   roles:
-    - role: robertdebock.bootstrap
-    - role: robertdebock.buildtools
-    - role: robertdebock.epel
-    - role: robertdebock.python_pip
-- name: create openvpn server
-  hosts: master
-  gather_facts: yes
-  become: yes
-  roles:
-    - role: robertdebock.openvpn
-      vars:
-        openvpn_role: "server"
+    - apache

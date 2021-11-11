@@ -1,0 +1,13 @@
+---
+- name: Install pip
+  become: yes
+  apt:
+    state: present
+    update_cache: true
+    pkg:
+      - python3-pip
+      - fonts-powerline
+- name: Install powerline python package
+  become: yes
+  pip:
+    name: powerline-status

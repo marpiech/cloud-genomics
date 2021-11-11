@@ -1,0 +1,19 @@
+---
+- name: Install apache
+  become: yes
+  apt:
+    state: present
+    update_cache: true
+    pkg:
+    - apache2
+
+- name: Install certbot
+  become: yes
+  community.general.snap:
+    name: certbot
+    classic: yes
+
+- name: Generate LetsEncrypt certificates for domains
+  become: yes
+  command: certbot --apache --non-interactive --keep-until-expiring --renew-with-new-domains --agree-tos --email {{ certbot_register_email|quote }} --no-eff-email --domains "{{ item }}"
+  with_items: "{{ certbot_certificate_domains }}"
