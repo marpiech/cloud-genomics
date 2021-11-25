@@ -1,14 +1,14 @@
 ARG REPOSITORY=marpiech
 ARG IMAGE_NAME=polygenictk
-ARG VERSION=2.0.36
-ARG TIMESTAMP=6.10.2021
+ARG VERSION=2.0.38
+ARG TIMESTAMP=25.11.2021
 
 FROM marpiech/dbsnp:155-grch38 AS dbsnp38
 FROM marpiech/dbsnp:155-grch37 AS dbsnp37
 FROM marpiech/gnomad:v3.1.1 AS gnomad
 FROM marpiech/ensembl-genes:104 AS ensembl
 
-FROM marpiech/polygenic:2.0.20 AS index
+FROM marpiech/ubuntu:20.04
 COPY --from=dbsnp37 dbsnp155.grch37.norm.vcf.gz dbsnp155.grch37.norm.vcf.gz
 COPY --from=dbsnp37 dbsnp155.grch37.norm.vcf.gz.tbi dbsnp155.grch37.norm.vcf.gz.tbi
 COPY --from=dbsnp37 dbsnp155.grch37.norm.vcf.gz.idx.db dbsnp155.grch37.norm.vcf.gz.idx.db
@@ -31,4 +31,5 @@ RUN wget https://s3.amazonaws.com/plink1-assets/plink_linux_x86_64_20210606.zip
 RUN apt update -qq && apt install -y unzip && unzip plink_linux_x86_64_20210606.zip
 RUN ln -s /plink /usr/bin/plink
 
-RUN pip3 install --upgrade polygenic==2.0.36
+RUN apt update -qq && apt install -y python3-pip
+RUN pip3 install --upgrade polygenic==2.0.38

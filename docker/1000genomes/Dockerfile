@@ -15,8 +15,5 @@ RUN for i in 22; \
 
 RUN wget ftp://ftp-trace.ncbi.nih.gov/1000genomes/ftp/release/20130502/integrated_call_samples_v3.20130502.ALL.panel
 
-RUN ls *.vcf.gz | sort -k1,1 -V
-RUN zcat ALL.chr22.shapeit2_integrated_snvindels_v2a_27022019.GRCh38.phased.vcf.gz | grep '#'
-
-RUN bcftools concat $(ls *.vcf.gz | sort -k1,1 -V) | bgzip -c > 1000g.vcf.gz
+RUN bcftools concat -o - $(ls *.vcf.gz | sort -k1,1 -V) | bgzip -c > 1000g.vcf.gz
 RUN tabix -p vcf 1000g.vcf.gz

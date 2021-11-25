@@ -88,20 +88,22 @@ set -- "${POSITIONAL[@]}" # restore positional parameters
 
 SOURCE="${BASH_SOURCE[0]}"
 
+function setrepository() {
+    REPOSITORY=$(cat $TARGET | grep "ARG REPOSITORY=" | head -1 | sed 's/\r//g' | sed 's/^ARG REPOSITORY[[:space:]]*=[[:space:]]*//')"/"
+}
+export -f setrepository
+
 function getname() {
-    #printf "=== getname\n"
     echo $(cat $TARGET | grep "ARG IMAGE_NAME=" | head -1 | sed 's/\r//g' | sed 's/^ARG IMAGE_NAME[[:space:]]*=[[:space:]]*//')
 }
 export -f getname
 
 function getversion() {
-    #printf "=== getversion\n"
     echo $(cat $TARGET | grep "ARG VERSION=" | head -1 | sed 's/\r//g' | sed 's/^ARG VERSION[[:space:]]*=[[:space:]]*//')
 }
 export -f getversion
 
 function gettag() {
-    #printf "=== gettag\n"
     echo $REPOSITORY$(getname)":"$(getversion)
 }
 export -f gettag
@@ -178,6 +180,7 @@ function push {
 
 function procede {
   istargetdefined
+  setrepository
   sleep 1
   dockerfileexists
   sleep 1
