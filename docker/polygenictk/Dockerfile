@@ -1,7 +1,7 @@
 ARG REPOSITORY=marpiech
 ARG IMAGE_NAME=polygenictk
-ARG VERSION=2.0.38
-ARG TIMESTAMP=25.11.2021
+ARG VERSION=2.1.0
+ARG TIMESTAMP=7.01.2022
 
 FROM marpiech/dbsnp:155-grch38 AS dbsnp38
 FROM marpiech/dbsnp:155-grch37 AS dbsnp37
@@ -32,4 +32,4 @@ RUN apt update -qq && apt install -y unzip && unzip plink_linux_x86_64_20210606.
 RUN ln -s /plink /usr/bin/plink
 
 RUN apt update -qq && apt install -y python3-pip
-RUN pip3 install --upgrade polygenic==2.0.38
+RUN pip3 install --upgrade polygenic==2.1.0
