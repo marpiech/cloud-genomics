@@ -32,7 +32,14 @@ COPY --from=downloader /data/v50.0_HO_public.fam /data/v50.0_HO_public.fam
 RUN apt -qq update && apt -y install wget unzip
 RUN mkdir /tools && cd /tools && wget https://s3.amazonaws.com/plink1-assets/plink_linux_x86_64_20210606.zip
 RUN cd /tools && unzip plink_linux_x86_64_20210606.zip
-RUN ls /tools
-#plink --bfile [filename prefix] --recode vcf --out [VCF prefix]
+RUN /tools/plink --bfile /data/v50.0_HO_public --recode vcf --out /data/v50.0_HO_public
 
-#FROM ubuntu:20.04
+FROM ubuntu:20.04 as liftover
+RUN mkdir /data
+COPY --from=vcfgenerator /data/v50.0_HO_public.vcf /data/v50.0_HO_public.vcf
+RUN apt -qq update && apt -y install gzip wget python3 python3-pip
+RUN pip3 install CrossMap
+RUN cd /data && wget https://hgdownload.cse.ucsc.edu/goldenpath/hg19/liftOver/hg19ToHg38.over.chain.gz
+RUN cd /data && wget https://hgdownload.cse.ucsc.edu/goldenpath/hg38/bigZips/hg38.fa.gz && gzip -d hg38.fa.gz
+RUN CrossMap.py vcf /data/hg19ToHg38.over.chain.gz /data/v50.0_HO_public.vcf /data/hg38.fa /data/v50.0_HO_public.hg38.vcf
+
