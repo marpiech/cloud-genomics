@@ -1,7 +1,0 @@
-- include: install.yml
-  tags:
-    - zsh_install
-
-- include: configure.yml
-  tags:
-    - zsh_configure

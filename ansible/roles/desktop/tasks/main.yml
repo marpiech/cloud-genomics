@@ -1,0 +1,8 @@
+---
+- name: Install net utils
+  become: yes
+  apt:
+    state: present
+    update_cache: true
+    pkg:
+      - net-tools
