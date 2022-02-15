@@ -1,0 +1,5 @@
+---
+- hosts: bioinfo
+  roles:
+    - docker
+    - bioinfo
