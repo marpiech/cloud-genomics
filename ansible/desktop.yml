@@ -3,5 +3,7 @@
   vars: 
     certbot_generate_certificates: true
   roles:
-    - desktop
-    - powerline
+#    - desktop
+#    - powerline
+#    - terminator
+    - docker

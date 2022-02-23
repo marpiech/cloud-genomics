@@ -1,0 +1,56 @@
+---
+- name: Install build-essential
+  become: yes
+  apt:
+    state: present
+    update_cache: true
+    pkg:
+    -  build-essential
+- name: Install debhelper
+  become: yes
+  apt:
+    state: present
+    update_cache: true
+    pkg:
+    -  debhelper
+- name: Install git
+  become: yes
+  apt:
+    state: present
+    update_cache: true
+    pkg:
+    -  git
+- name: Install pandoc
+  become: yes
+  apt:
+    state: present
+    update_cache: true
+    pkg:
+    -  pandoc
+- name: Install shunit2
+  become: yes
+  apt:
+    state: present
+    update_cache: true
+    pkg:
+    -  shunit2
+- name: Clone jumpapp
+  become: yes
+  git:
+    repo: 'https://github.com/mkropat/jumpapp.git'
+    dest: /opt/tools/jumpapp
+- name: Build jumpapp
+  become: yes
+  make:
+    chdir: /opt/tools/jumpapp
+    target: deb
+- name: Install my_package
+  become: yes
+  apt: deb="/opt/tools/jumpapp/jumpapp_1.1-1_all.deb"
+- name: Install terminator
+  become: yes
+  apt:
+    state: present
+    update_cache: true
+    pkg:
+    - terminator
