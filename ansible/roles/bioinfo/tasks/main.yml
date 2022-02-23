@@ -1,0 +1,29 @@
+---
+- name: Install bedtools
+  become: yes
+  apt:
+    state: present
+    update_cache: true
+    pkg:
+      - bedtools
+- name: Install samtools
+  become: yes
+  apt:
+    state: present
+    update_cache: true
+    pkg:
+      - samtools
+- name: Install bcftools
+  become: yes
+  apt:
+    state: present
+    update_cache: true
+    pkg:
+      - bcftools
+- name: Install r-base
+  become: yes
+  apt:
+    state: present
+    update_cache: true
+    pkg:
+      - r-base

@@ -1,0 +1,14 @@
+---
+- name: Install utils
+  become: yes
+  apt:
+    state: present
+    update_cache: true
+    pkg:
+    - bsdmainutils # column program
+    - apt-transport-https # apt keys
+    - ca-certificates # apt keys
+    - curl
+    - htop
+    - screen
+    - tmux

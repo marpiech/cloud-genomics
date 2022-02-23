@@ -1,0 +1,16 @@
+---
+- hosts: rstudio
+  vars: 
+    - rstudio_server_version: 2021.09.2-382
+    - rstudio_server_install: r-base
+    - rstudio_server_www_port: 8787
+    - rstudio_server_www_address: 0.0.0.0
+    - rstudio_server_auth_required_user_group: ippas
+    #rstudio_server_which_r [optional]: Override which version of R is used
+    - rstudio_server_session_timeout_minutes: 0
+    - ansible_distribution_release: bionic
+  roles:
+    - name: oefenweb.rstudio_server
+      become: yes
+      version: v2.7.1
+      source: https://galaxy.ansible.com
